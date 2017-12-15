@@ -1,0 +1,217 @@
+-- Merging decision tree log ---
+manifest
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:1:1-76:12
+INJECTED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:1:1-76:12
+INJECTED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:1:1-76:12
+INJECTED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:1:1-76:12
+INJECTED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:1:1-76:12
+INJECTED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:1:1-76:12
+INJECTED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:1:1-76:12
+	package
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:2:11-43
+		INJECTED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml
+		INJECTED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:1:1-76:12
+		INJECTED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:1:1-76:12
+		INJECTED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:1:11-69
+uses-permission#android.permission.INTERNET
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:4:5-66
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:4:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:5:5-78
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:5:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:6:5-75
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:6:22-73
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:8:5-80
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:8:22-78
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:9:5-79
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:9:22-77
+application
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:11:5-74:19
+activity#com.jrmf360.neteaselib.rp.ui.OpenRpActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:13:9-16:56
+	android:launchMode
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:15:13-44
+	android:theme
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:16:13-54
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:14:13-71
+activity#com.jrmf360.neteaselib.rp.ui.PActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:18:9-21:51
+	android:launchMode
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:20:13-44
+	android:theme
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:21:13-49
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:19:13-66
+activity#com.jrmf360.neteaselib.rp.ui.TransPayActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:22:9-26:57
+	android:launchMode
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:24:13-44
+	android:windowSoftInputMode
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:26:13-55
+	android:theme
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:25:13-49
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:23:13-73
+activity#com.jrmf360.neteaselib.rp.ui.SgRpActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:27:9-77
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:27:19-75
+activity#com.jrmf360.neteaselib.rp.ui.SsRpActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:28:9-77
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:28:19-75
+activity#com.jrmf360.neteaselib.rp.ui.RpDetailActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:29:9-81
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:29:19-79
+activity#com.jrmf360.neteaselib.rp.ui.MyRpActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:30:9-77
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:30:19-75
+activity#com.jrmf360.neteaselib.rp.ui.AuthenActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:31:9-79
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:31:19-77
+activity#com.jrmf360.neteaselib.rp.ui.PwdH5Activity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:32:9-78
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:32:19-76
+activity#com.jrmf360.neteaselib.rp.ui.AcfActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:33:9-76
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:33:19-74
+activity#com.jrmf360.neteaselib.rp.ui.AcsActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:34:9-76
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:34:19-74
+activity#com.jrmf360.neteaselib.rp.ui.BankCardListActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:35:9-85
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:35:19-83
+activity#com.jrmf360.neteaselib.rp.ui.TransAccountActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:37:9-85
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:37:19-83
+activity#com.jrmf360.neteaselib.rp.ui.TransSuccActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:38:9-82
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:38:19-80
+activity#com.jrmf360.neteaselib.rp.ui.TransDetailActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:39:9-84
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:39:19-82
+activity#com.jrmf360.neteaselib.wallet.ui.MyWalletActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:42:9-85
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:42:19-83
+activity#com.jrmf360.neteaselib.wallet.ui.AccountInfoActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:43:9-88
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:43:19-86
+activity#com.jrmf360.neteaselib.wallet.ui.TradeHistoryActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:44:9-89
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:44:19-87
+activity#com.jrmf360.neteaselib.wallet.ui.SecureSettingActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:45:9-90
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:45:19-88
+activity#com.jrmf360.neteaselib.wallet.ui.SupportBankCardActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:46:9-92
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:46:19-90
+activity#com.jrmf360.neteaselib.wallet.ui.BankSettingActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:47:9-88
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:47:19-86
+activity#com.jrmf360.neteaselib.wallet.ui.AddCardSecondActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:48:9-90
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:48:19-88
+activity#com.jrmf360.neteaselib.wallet.ui.AddCardFirstActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:49:9-89
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:49:19-87
+activity#com.jrmf360.neteaselib.wallet.ui.RechargeActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:50:9-85
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:50:19-83
+activity#com.jrmf360.neteaselib.wallet.ui.GetDepositActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:51:9-87
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:51:19-85
+activity#com.jrmf360.neteaselib.wallet.ui.MyRpActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:52:9-81
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:52:19-79
+activity#com.jrmf360.neteaselib.wallet.ui.TradeDetailActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:53:9-88
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:53:19-86
+activity#com.jrmf360.neteaselib.wallet.ui.RpDetailActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:54:9-85
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:54:19-83
+activity#com.jrmf360.neteaselib.wallet.ui.PwdH5Activity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:55:9-82
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:55:19-80
+activity#com.jrmf360.neteaselib.wallet.ui.AuthenActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:56:9-83
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:56:19-81
+activity#com.alipay.sdk.app.H5PayActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:59:9-64:69
+	android:screenOrientation
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:63:13-47
+	android:windowSoftInputMode
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:64:13-67
+	android:exported
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:62:13-37
+	android:configChanges
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:61:13-85
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:60:13-60
+activity#com.alipay.sdk.app.H5AuthActivity
+ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:65:9-70:69
+	android:screenOrientation
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:69:13-47
+	android:windowSoftInputMode
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:70:13-67
+	android:exported
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:68:13-37
+	android:configChanges
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:67:13-74
+	android:name
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml:66:13-61
+uses-sdk
+INJECTED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml
+INJECTED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml
+INJECTED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml
+INJECTED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml
+		INJECTED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml
+		ADDED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml
+		INJECTED from F:\ImWangYiYun\jrmfneteaselib\src\main\AndroidManifest.xml
