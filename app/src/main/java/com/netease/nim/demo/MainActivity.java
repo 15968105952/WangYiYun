@@ -4,22 +4,29 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gyf.barlibrary.ImmersionBar;
+import com.netease.nim.demo.activity.SettingsActivity;
 import com.netease.nim.demo.login.LoginActivity;
 import com.netease.nim.demo.login.LogoutHelper;
 import com.netease.nim.demo.prefrence.Preferences;
+import com.netease.nim.uikit.UI;
 import com.netease.nim.uikit.api.model.contact.ContactsCustomization;
 import com.netease.nim.uikit.business.contact.ContactsFragment;
 import com.netease.nim.uikit.business.contact.core.item.AbsContactItem;
 import com.netease.nim.uikit.business.contact.core.item.ItemTypes;
 import com.netease.nim.uikit.business.contact.core.model.ContactDataAdapter;
 import com.netease.nim.uikit.business.contact.core.viewholder.AbsContactViewHolder;
+import com.netease.nim.uikit.business.contact.selector.activity.ContactSelectActivity;
+import com.netease.nim.uikit.business.team.helper.TeamHelper;
 import com.netease.nim.uikit.common.util.log.LogUtil;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
@@ -30,10 +37,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends UI {
     private static final String EXTRA_APP_QUIT = "APP_QUIT";
-// 使用一个栈记录所有添加的Fragment  
-private Stack<Fragment> fragmentStack=new Stack<>();
+   /* @InjectView(R.id.back_btn)
+    Button backBtn;
+    @InjectView(R.id.page_name)
+    TextView pageName;*/
+    // 使用一个栈记录所有添加的Fragment  
+    private Stack<Fragment> fragmentStack = new Stack<>();
     private ContactsFragment fragment;
 
 
@@ -182,24 +193,73 @@ private Stack<Fragment> fragmentStack=new Stack<>();
         });
     }
 
+    private ImmersionBar mImmersionBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setToolBar(R.id.toolbar, R.string.app_name, R.drawable.actionbar_dark_logo);
+
+        setTitle(R.string.app_name);
+        //退出登陆
+        onParseIntent();
+//        ButterKnife.inject(this);
+        /*沉浸式状态*/
+       /* mImmersionBar = ImmersionBar.with(this).statusBarDarkFont(true);
+        mImmersionBar.init();
+        pageName.setText("直播间");*/
         //监听是否强制下线
         registerObservers(true);
-        onParseIntent();
+
     }
 
+    /*顶部展示*/
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_activity_menu, menu);
+        super.onCreateOptionsMenu(menu);
+        return true;
+    }
+/*menu按钮点击*/
+@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+        case R.id.about:
+            startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+            break;
+        case R.id.create_normal_team:
+            ContactSelectActivity.Option option = TeamHelper.getCreateContactSelectOption(null, 50);
+//            NimUIKit.startContactSelector(MainActivity.this, option, REQUEST_CODE_NORMAL);
+            break;
+        case R.id.create_regular_team:
+            ContactSelectActivity.Option advancedOption = TeamHelper.getCreateContactSelectOption(null, 50);
+//            NimUIKit.startContactSelector(MainActivity.this, advancedOption, REQUEST_CODE_ADVANCED);
+            break;
+        case R.id.search_advanced_team:
+//            AdvancedTeamSearchActivity.start(MainActivity.this);
+            break;
+        case R.id.add_buddy:
+//            AddFriendActivity.start(MainActivity.this);
+            break;
+        case R.id.search_btn:
+//            GlobalSearchActivity.start(MainActivity.this);
+            break;
+        default:
+            break;
+    }
+    return super.onOptionsItemSelected(item);
+}
 
 
 
-
-
-
-
-
-
+    // 注销
+    public static void logout(Context context, boolean quit) {
+        Intent extra = new Intent();
+        extra.putExtra(EXTRA_APP_QUIT, quit);
+        start(context, extra);
+    }
 
     /********聊天部分监听*********/
     private void registerObservers(boolean register) {
@@ -207,6 +267,12 @@ private Stack<Fragment> fragmentStack=new Stack<>();
 //        MyUserInfoCache.getInstance().registerFriendDataChangedObserver(friendDataChangedObserver,register);
     }
 
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        setIntent(intent);
+        onParseIntent();
+    }
 
     private void onParseIntent() {
         Intent intent = getIntent();

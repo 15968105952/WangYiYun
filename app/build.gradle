@@ -67,4 +67,6 @@ dependencies {
     implementation files('libs/nrtc-sdk.jar')
     implementation files('libs/mi_push_sdk_3.2.2.jar')
     compile 'com.jakewharton:butterknife:5.1.1'
+    /*沉浸式效果*/
+    compile 'com.gyf.barlibrary:barlibrary:2.2.9'
 }

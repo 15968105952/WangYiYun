@@ -103,12 +103,12 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <!-- 多端登录管理 -->
-       <!-- <activity
-            android:name=".main.activity.MultiportActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustResize|stateHidden" />-->
+        <!-- <activity
+             android:name=".main.activity.MultiportActivity"
+             android:configChanges="keyboardHidden|orientation"
+             android:screenOrientation="portrait"
+             android:theme="@style/AppTheme.NoActionBar"
+             android:windowSoftInputMode="adjustResize|stateHidden" />-->
         <!-- 登录界面 -->
         <activity
             android:name="com.netease.nim.demo.login.LoginActivity"
@@ -117,13 +117,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/LoginTheme"
             android:windowSoftInputMode="adjustResize|stateHidden" />
-
-
-
-
-
-
-
+        <!--设置界面-->
+        <activity android:name=".activity.SettingsActivity"></activity>
+        <!--用户信息界面-->
+        <activity android:name=".activity.UserProfileSettingActivity"></activity>
+<!--用户昵称-->
+        <activity android:name=".activity.UserProfileEditItemActivity"></activity>
 
         <!-- 声明云信后台服务 -->
         <service
@@ -168,7 +167,6 @@
             android:process=":core" />
 
 
-
         <!-- 申明白板会话的广播接收器，第三方APP集成时，action中的com.netease.nim.demo请替换为自己的包名 -->
         <receiver
             android:name="com.netease.nimlib.receiver.RTSBroadcastReceiver"
@@ -178,7 +176,6 @@
                 <action android:name="com.netease.nim.demo.ACTION.RECEIVE_RTS_NOTIFICATION" />
             </intent-filter>
         </receiver>
-
 
 
         <!-- 小米推送配置 -->
