@@ -7,6 +7,8 @@ import android.content.IntentFilter;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.netease.nim.demo.activity.AVChatProfile;
+import com.netease.nim.demo.prefrence.UserPreferences;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.NimStrings;
 import com.netease.nimlib.sdk.Observer;
@@ -22,8 +24,6 @@ import com.netease.nimlib.sdk.team.model.IMMessageFilter;
 import com.netease.nimlib.sdk.team.model.UpdateTeamAttachment;
 
 import java.util.Map;
-
-import com.netease.nim.demo.prefrence.UserPreferences;
 
 /**
  * Created by hzchenkang on 2017/9/26.
@@ -81,17 +81,18 @@ public class NIMInitManager {
             public void onEvent(AVChatData data) {
                 String extra = data.getExtra();
                 Log.e("Extra", "Extra Message->" + extra);
-               /* if (PhoneCallStateObserver.getInstance().getPhoneCallState() != PhoneCallStateObserver.PhoneCallStateEnum.IDLE
+              /*  if (PhoneCallStateObserver.getInstance().getPhoneCallState() != PhoneCallStateObserver.PhoneCallStateEnum.IDLE
                         || AVChatProfile.getInstance().isAVChatting()
                         || TeamAVChatHelper.sharedInstance().isTeamAVChatting()
                         || AVChatManager.getInstance().getCurrentChatId() != 0) {
                     LogUtil.i(TAG, "reject incoming call data =" + data.toString() + " as local phone is not idle");
                     AVChatManager.getInstance().sendControlCommand(data.getChatId(), AVChatControlCommand.BUSY, null);
                     return;
-                }
+                }*/
+              /*暂时不用*/
                 // 有网络来电打开AVChatActivity
                 AVChatProfile.getInstance().setAVChatting(true);
-                AVChatProfile.getInstance().launchActivity(data, AVChatActivity.FROM_BROADCASTRECEIVER);*/
+                AVChatProfile.getInstance().launchActivity(data, com.netease.nim.demo.others.MainActivity.FROM_BROADCASTRECEIVER);
             }
         }, register);
     }

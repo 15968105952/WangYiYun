@@ -1,6 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">My Application</string>
-
+    <string name="app_name">云信 Demo</string>
     <string name="empty"></string>
     <string name="main_tab_session">会话</string>
     <string name="main_tab_contact">通讯录</string>
@@ -342,5 +342,6 @@
     <string name="nrtc_setting_voe_high_quality">高清语音</string>
     <string name="nrtc_setting_voe_dtx_key">nrtc_setting_voe_dtx_key</string>
     <string name="nrtc_setting_voe_dtx">人声检测</string>
-    <string name="online">在线直播</string>
+
+
 </resources>

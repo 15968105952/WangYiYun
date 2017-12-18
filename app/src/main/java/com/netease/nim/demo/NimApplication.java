@@ -12,7 +12,6 @@ import com.netease.nim.demo.manager.NimDemoLocationProvider;
 import com.netease.nim.demo.manager.SessionHelper;
 import com.netease.nim.demo.mxplush.DemoMixPushMessageHandler;
 import com.netease.nim.demo.prefrence.Preferences;
-import com.netease.nim.demo.prefrence.UserPreferences;
 import com.netease.nim.demo.redpacket.NIMRedPacketClient;
 import com.netease.nim.uikit.api.NimUIKit;
 import com.netease.nim.uikit.api.UIKitOptions;
@@ -23,7 +22,7 @@ import com.netease.nimlib.sdk.mixpush.NIMPushClient;
 import com.netease.nimlib.sdk.util.NIMUtil;
 
 public class NimApplication extends Application {
-
+    public static Context context;
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(newBase);
@@ -34,7 +33,7 @@ public class NimApplication extends Application {
     public void onCreate() {
         MultiDex.install(this);
         super.onCreate();
-
+        context = getApplicationContext();
         DemoCache.setContext(this);
         // 注册小米推送，参数：小米推送证书名称（需要在云信管理后台配置）、appID 、appKey，该逻辑放在 NIMClient init 之前
         NIMPushClient.registerMiPush(this, "DEMO_MI_PUSH", "2882303761517502883", "5671750254883");
@@ -56,7 +55,7 @@ public class NimApplication extends Application {
             // 初始化UIKit模块
             initUIKit();
             // 初始化消息提醒
-            NIMClient.toggleNotification(UserPreferences.getNotificationToggle());
+//            NIMClient.toggleNotification(UserPreferences.getNotificationToggle());
             // 云信sdk相关业务初始化
             NIMInitManager.getInstance().init(true);
         }

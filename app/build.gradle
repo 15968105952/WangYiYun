@@ -30,13 +30,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    /*放置so的位置需要和配置文件指向的位置一致*/
+   /* *//*放置so的位置需要和配置文件指向的位置一致*//*
     sourceSets {
         main {
             jni.srcDirs = []
             jniLibs.srcDirs = ["src/main/libs"]
         }
-    }
+    }*/
 
     //为导入arr文件
     repositories {
@@ -60,8 +60,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     implementation 'com.android.support:multidex:1.0.2'
-    implementation project(path: ':uikit')
-    implementation project(':jrmfneteaselib')
     implementation files('libs/AMap2DMap_3.0.0_AMapSearch_3.6.1_AMapLocation_3.2.1_20161228.jar')
     implementation files('libs/video_effect.jar')
     implementation files('libs/nrtc-sdk.jar')
@@ -69,4 +67,8 @@ dependencies {
     compile 'com.jakewharton:butterknife:5.1.1'
     /*沉浸式效果*/
     compile 'com.gyf.barlibrary:barlibrary:2.2.9'
+    /*加入modle*/
+    implementation project(path: ':uikit')
+    implementation project(':jrmfneteaselib')
+    implementation project(path: ':faceunity')
 }

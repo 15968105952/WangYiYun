@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/go_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="登录"
+        />
+    <Button
+        android:id="@+id/go_bo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="呼叫"
+        />
+    <Button
+        android:id="@+id/go_jie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="接听"
+        />
+
+    <Button
+        android:id="@+id/hang_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="挂断"
+        />
+
+    <include
+        android:id="@+id/surface_layout"
+        layout="@layout/avchat_surface_layout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       />
+
+</LinearLayout>

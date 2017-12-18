@@ -28,10 +28,8 @@ import com.netease.nim.uikit.business.contact.core.viewholder.AbsContactViewHold
 import com.netease.nim.uikit.business.contact.selector.activity.ContactSelectActivity;
 import com.netease.nim.uikit.business.team.helper.TeamHelper;
 import com.netease.nim.uikit.common.util.log.LogUtil;
-import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
 import com.netease.nimlib.sdk.StatusCode;
-import com.netease.nimlib.sdk.auth.AuthServiceObserver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -263,7 +261,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
     /********聊天部分监听*********/
     private void registerObservers(boolean register) {
-        NIMClient.getService(AuthServiceObserver.class).observeOnlineStatus(userStatusObserver, register);
+//        NIMClient.getService(AuthServiceObserver.class).observeOnlineStatus(userStatusObserver, register);
 //        MyUserInfoCache.getInstance().registerFriendDataChangedObserver(friendDataChangedObserver,register);
     }
 
