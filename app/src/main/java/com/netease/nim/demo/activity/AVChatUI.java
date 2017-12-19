@@ -247,7 +247,7 @@ public class AVChatUI implements AVChatUIListener {
         AVChatProfile.getInstance().setAVChatting(true);
         avChatAudio = new AVChatAudio(context, root.findViewById(R.id.avchat_audio_layout), this, this);
         avChatVideo = new AVChatVideo(context, root.findViewById(R.id.avchat_video_layout), this, this);
-        avChatSurface = new AVChatSurface(context, root.findViewById(R.id.avchat_surface_layout), cb);
+        avChatSurface = new AVChatSurface(context,this, root.findViewById(R.id.avchat_surface_layout), cb);
 
         return true;
     }

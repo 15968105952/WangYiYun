@@ -1,7 +1,6 @@
 package com.netease.nim.demo.chatvideo;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.view.Gravity;
@@ -13,14 +12,12 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.netease.nim.demo.DemoCache;
-import com.netease.nim.demo.NimApplication;
 import com.netease.nim.demo.R;
-import com.netease.nim.demo.others.HB;
-import com.netease.nim.demo.others.ScreenUtil;
-import com.netease.nim.demo.utils.SharePreUtils;
+import com.netease.nim.demo.activity.AVChatUI;
+import com.netease.nim.uikit.common.util.log.LogUtil;
+import com.netease.nim.uikit.common.util.sys.ScreenUtil;
 import com.netease.nimlib.sdk.avchat.AVChatManager;
 import com.netease.nimlib.sdk.avchat.constant.AVChatVideoScalingType;
 import com.netease.nimlib.sdk.avchat.model.AVChatSurfaceViewRenderer;
@@ -32,7 +29,7 @@ import com.netease.nimlib.sdk.avchat.model.AVChatSurfaceViewRenderer;
 public class AVChatSurface {
 
     private Context context;
-
+    private AVChatUI manager;
     private View surfaceRoot;
     private Handler uiHandler;
 
@@ -76,8 +73,9 @@ public class AVChatSurface {
 
     private TouchZoneCallback touchZoneCallback;
 
-    public AVChatSurface(Context context, View surfaceRoot, TouchZoneCallback cb) {
+    public AVChatSurface(Context context, AVChatUI manager, View surfaceRoot, TouchZoneCallback cb) {
         this.context = context;
+        this.manager = manager;
         this.surfaceRoot = surfaceRoot;
         this.uiHandler = new Handler(context.getMainLooper());
         this.smallRender = new AVChatSurfaceViewRenderer(context);
@@ -86,14 +84,11 @@ public class AVChatSurface {
     }
 
     private void findViews() {
-
-//        TODO 6666 显示布局
-        setSurfaceRoot(true);
-
-
         if (init)
             return;
         if (surfaceRoot != null) {
+            touchLayout = surfaceRoot.findViewById(R.id.touch_zone);
+            touchLayout.setOnTouchListener(touchListener);
 
             smallSizePreviewFrameLayout = (FrameLayout) surfaceRoot.findViewById(R.id.small_size_preview_layout);
             smallSizePreviewLayout = (LinearLayout) surfaceRoot.findViewById(R.id.small_size_preview);
@@ -107,12 +102,16 @@ public class AVChatSurface {
         }
     }
 
+    private View.OnTouchListener touchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if (event.getAction() == MotionEvent.ACTION_UP && touchZoneCallback != null) {
+                touchZoneCallback.onTouch();
+            }
 
-    public void setLargeRedColor(){
-        findViews();
-        largeSizePreviewLayout.setBackgroundColor(Color.RED);
-    }
-
+            return true;
+        }
+    };
 
     private View.OnTouchListener smallPreviewTouchListener = new View.OnTouchListener() {
         @Override
@@ -143,13 +142,17 @@ public class AVChatSurface {
                     int destX, destY;
                     if (x - inX <= paddingRect.left) {
                         destX = paddingRect.left;
+                    } else if (x - inX + v.getWidth() >= ScreenUtil.screenWidth - paddingRect.right) {
+                        destX = ScreenUtil.screenWidth - v.getWidth() - paddingRect.right;
                     } else {
                         destX = x - inX;
                     }
 
                     if (y - inY <= paddingRect.top) {
                         destY = paddingRect.top;
-                    }  else {
+                    } else if (y - inY + v.getHeight() >= ScreenUtil.screenHeight - paddingRect.bottom) {
+                        destY = ScreenUtil.screenHeight - v.getHeight() - paddingRect.bottom;
+                    } else {
                         destY = y - inY;
                     }
 
@@ -180,7 +183,28 @@ public class AVChatSurface {
         }
     };
 
-
+    public void onCallStateChange(CallStateEnum state) {
+        if (CallStateEnum.isVideoMode(state))
+            findViews();
+        switch (state) {
+            case VIDEO:
+                largeSizePreviewCoverLayout.setVisibility(View.GONE);
+                break;
+            case OUTGOING_AUDIO_TO_VIDEO:
+                showNotificationLayout(AUDIO_TO_VIDEO_WAIT);
+                break;
+            case INCOMING_AUDIO_TO_VIDEO:
+                break;
+            case AUDIO:
+                if (smallSizePreviewFrameLayout != null) {
+                    smallSizePreviewFrameLayout.setVisibility(View.INVISIBLE);
+                }
+                break;
+            default:
+                break;
+        }
+        setSurfaceRoot(CallStateEnum.isVideoMode(state));
+    }
 
     /**
      * 大图像surfaceview 初始化
@@ -194,12 +218,10 @@ public class AVChatSurface {
          * 设置画布，加入到自己的布局中，用于呈现视频图像
          * account 要显示视频的用户帐号
          */
-        if (SharePreUtils.getString(HB.NAME , "").equals(account)) {
-            boolean b = AVChatManager.getInstance().setupLocalVideoRender(largeRender, false, AVChatVideoScalingType.SCALE_ASPECT_BALANCED);
-            Toast.makeText(NimApplication.context,"w我家在的都不就setupLocalVideoRender"+ b , Toast.LENGTH_SHORT).show();
+        if (DemoCache.getAccount().equals(account)) {
+            AVChatManager.getInstance().setupLocalVideoRender(largeRender, false, AVChatVideoScalingType.SCALE_ASPECT_BALANCED);
         } else {
-            boolean b = AVChatManager.getInstance().setupRemoteVideoRender(account, largeRender, false, AVChatVideoScalingType.SCALE_ASPECT_BALANCED);
-            Toast.makeText(NimApplication.context,"w我家在的都不就setupRemoteVideoRender"+ b , Toast.LENGTH_SHORT).show();
+            AVChatManager.getInstance().setupRemoteVideoRender(account, largeRender, false, AVChatVideoScalingType.SCALE_ASPECT_BALANCED);
         }
         addIntoLargeSizePreviewLayout(largeRender);
 
@@ -213,7 +235,6 @@ public class AVChatSurface {
      */
     public void initSmallSurfaceView(String account) {
         smallAccount = account;
-
         findViews();
         smallSizePreviewFrameLayout.setVisibility(View.VISIBLE);
         /**
@@ -227,7 +248,7 @@ public class AVChatSurface {
         }
         addIntoSmallSizePreviewLayout(smallRender);
 
-
+        smallSizePreviewFrameLayout.bringToFront();
     }
 
 
@@ -241,10 +262,12 @@ public class AVChatSurface {
             ((ViewGroup) surfaceView.getParent()).removeView(surfaceView);
         }
         largeSizePreviewLayout.addView(surfaceView);
-//        surfaceView.setZOrderMediaOverlay(false);
-        largeSizePreviewCoverLayout.setVisibility(View.GONE);
-        smallSizePreviewFrameLayout.bringToFront();
+        surfaceView.setZOrderMediaOverlay(false);
+        if (manager.getCallingState() == CallStateEnum.VIDEO || manager.getCallingState() == CallStateEnum.OUTGOING_VIDEO_CALLING) {
+            largeSizePreviewCoverLayout.setVisibility(View.GONE);
+        }
     }
+
     /**
      * 添加surfaceview到smallSizePreviewLayout
      */
@@ -256,7 +279,6 @@ public class AVChatSurface {
         smallSizePreviewLayout.addView(surfaceView);
         surfaceView.setZOrderMediaOverlay(true);
         smallSizePreviewLayout.setVisibility(View.VISIBLE);
-
     }
 
     /**
@@ -278,10 +300,6 @@ public class AVChatSurface {
         }
     }
 
-    public void isNO(){
-        largeSizePreviewCoverLayout.setVisibility(View.GONE);
-    }
-
     /**
      * 对方关闭了摄像头
      */
@@ -299,9 +317,11 @@ public class AVChatSurface {
      */
     public void localVideoOn() {
         isLocalVideoOff = false;
-
-        largeSizePreviewCoverLayout.setVisibility(View.GONE);
-
+        if (localPreviewInSmallSize) {
+            smallSizePreviewCoverImg.setVisibility(View.GONE);
+        } else {
+            largeSizePreviewCoverLayout.setVisibility(View.GONE);
+        }
     }
 
     /**
@@ -342,13 +362,13 @@ public class AVChatSurface {
         TextView textView = (TextView) largeSizePreviewCoverLayout;
         switch (closeType) {
             case PEER_CLOSE_CAMERA:
-                textView.setText("PEER_CLOSE_CAMERA");
+                textView.setText(R.string.avchat_peer_close_camera);
                 break;
             case LOCAL_CLOSE_CAMERA:
-                textView.setText("LOCAL_CLOSE_CAMERA");
+                textView.setText(R.string.avchat_local_close_camera);
                 break;
             case AUDIO_TO_VIDEO_WAIT:
-                textView.setText("AUDIO_TO_VIDEO_WAIT");
+                textView.setText(R.string.avchat_audio_to_video_wait);
                 break;
             default:
                 return;
@@ -374,12 +394,12 @@ public class AVChatSurface {
     private void switchRender(String user1, String user2) {
 
         //先取消用户的画布
-        if (SharePreUtils.getString(HB.NAME,"").equals(user1)) {
+        if (DemoCache.getAccount().equals(user1)) {
             AVChatManager.getInstance().setupLocalVideoRender(null, false, 0);
         } else {
             AVChatManager.getInstance().setupRemoteVideoRender(user1, null, false, 0);
         }
-        if (SharePreUtils.getString(HB.NAME,"").equals(user2)) {
+        if (DemoCache.getAccount().equals(user2)) {
             AVChatManager.getInstance().setupLocalVideoRender(null, false, 0);
         } else {
             AVChatManager.getInstance().setupRemoteVideoRender(user2, null, false, 0);
@@ -398,12 +418,12 @@ public class AVChatSurface {
         }
 
         //重新设置上画布
-        if (user1 == SharePreUtils.getString(HB.NAME,"")) {
+        if (user1 == DemoCache.getAccount()) {
             AVChatManager.getInstance().setupLocalVideoRender(render1, false, AVChatVideoScalingType.SCALE_ASPECT_BALANCED);
         } else {
             AVChatManager.getInstance().setupRemoteVideoRender(user1, render1, false, AVChatVideoScalingType.SCALE_ASPECT_BALANCED);
         }
-        if (user2 == SharePreUtils.getString(HB.NAME,"")) {
+        if (user2 == DemoCache.getAccount()) {
             AVChatManager.getInstance().setupLocalVideoRender(render2, false, AVChatVideoScalingType.SCALE_ASPECT_BALANCED);
         } else {
             AVChatManager.getInstance().setupRemoteVideoRender(user2, render2, false, AVChatVideoScalingType.SCALE_ASPECT_BALANCED);
@@ -412,14 +432,15 @@ public class AVChatSurface {
 
     /**
      * 是否本地预览图像在小图像（UI上层）
+     *
      * @return
      */
     public boolean isLocalPreviewInSmallSize() {
         return localPreviewInSmallSize;
     }
 
-    public void closeSession() {
-
+    public void closeSession(int exitCode) {
+        LogUtil.i("AVChatSurface", "closeSession,init->" + init);
         if (init) {
             if (largeRender.getParent() != null) {
                 ((ViewGroup) largeRender.getParent()).removeView(largeRender);

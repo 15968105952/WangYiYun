@@ -1,7 +1,6 @@
 package com.netease.nim.demo.activity;
 
 import com.netease.nim.demo.DemoCache;
-import com.netease.nim.demo.others.MainActivity;
 import com.netease.nim.uikit.common.framework.infra.Handlers;
 import com.netease.nimlib.sdk.avchat.model.AVChatData;
 
@@ -36,7 +35,7 @@ public class AVChatProfile {
             public void run() {
                 // 启动，如果 task正在启动，则稍等一下
                 if (!DemoCache.isMainTaskLaunching()) {
-                    MainActivity.launch(DemoCache.getContext(), data, source);
+                    VideoActivity.launch(DemoCache.getContext(), data, source);
                 } else {
                     launchActivity(data, source);
                 }

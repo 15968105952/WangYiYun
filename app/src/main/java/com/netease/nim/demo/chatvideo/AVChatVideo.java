@@ -45,7 +45,7 @@ public class AVChatVideo implements View.OnClickListener, ToggleListener {
     //底部控制按钮
     private View bottomRoot;
     ToggleView switchCameraToggle;
-    ToggleView closeCameraToggle;
+//    ToggleView closeCameraToggle;
     ToggleView muteToggle;
     ImageView recordToggle;
     ImageView hangUpImg;
@@ -69,7 +69,7 @@ public class AVChatVideo implements View.OnClickListener, ToggleListener {
     private boolean init = false;
     private boolean shouldEnableToggle = false;
     private boolean isInSwitch = false;
-    private ImageView viewById;
+
 
     public AVChatVideo(Context context, View root, AVChatUIListener listener, AVChatUI manager) {
         this.context = context;
@@ -84,7 +84,7 @@ public class AVChatVideo implements View.OnClickListener, ToggleListener {
         topRoot = root.findViewById(R.id.avchat_video_top_control);
         switchAudio = topRoot.findViewById(R.id.avchat_video_switch_audio);
         switchAudio.setOnClickListener(this);
-        time = (Chronometer) topRoot.findViewById(R.id.avchat_video_time);
+//        time = (Chronometer) topRoot.findViewById(R.id.avchat_video_time);
         netUnstableTV = (TextView) topRoot.findViewById(R.id.avchat_video_netunstable);
         middleRoot = root.findViewById(R.id.avchat_video_middle_control);
         headImg = (HeadImageView) middleRoot.findViewById(R.id.avchat_video_head);
@@ -105,15 +105,15 @@ public class AVChatVideo implements View.OnClickListener, ToggleListener {
         faceUnityRoot = root.findViewById(R.id.avchat_video_face_unity);
 
         switchCameraToggle = new ToggleView(bottomRoot.findViewById(R.id.avchat_switch_camera), ToggleState.DISABLE, this);
-        closeCameraToggle = new ToggleView(bottomRoot.findViewById(R.id.avchat_close_camera), ToggleState.DISABLE, this);
+//        closeCameraToggle = new ToggleView(bottomRoot.findViewById(R.id.avchat_close_camera), ToggleState.DISABLE, this);
+        time = (Chronometer) bottomRoot.findViewById(R.id.avchat_video_time);
         muteToggle = new ToggleView(bottomRoot.findViewById(R.id.avchat_video_mute), ToggleState.DISABLE, this);
         recordToggle = (ImageView) bottomRoot.findViewById(R.id.avchat_video_record);
         recordToggle.setEnabled(false);
         recordToggle.setOnClickListener(this);
         hangUpImg = (ImageView) bottomRoot.findViewById(R.id.avchat_video_logout);
-        viewById = (ImageView) bottomRoot.findViewById(R.id.iv_send_redpackage);
+
         hangUpImg.setOnClickListener(this);
-        viewById.setOnClickListener(this);
 
         permissionRoot = root.findViewById(R.id.avchat_video_permission_control);
         init = true;
@@ -251,7 +251,7 @@ public class AVChatVideo implements View.OnClickListener, ToggleListener {
         if (shouldEnableToggle) {
             if (manager.canSwitchCamera() && AVChatCameraCapturer.hasMultipleCameras())
                 switchCameraToggle.enable();
-            closeCameraToggle.enable();
+//            closeCameraToggle.enable();
             muteToggle.enable();
             recordToggle.setEnabled(true);
             shouldEnableToggle = false;
@@ -290,19 +290,11 @@ public class AVChatVideo implements View.OnClickListener, ToggleListener {
             case R.id.avchat_switch_camera:
                 listener.switchCamera();
                 break;
-            case R.id.avchat_close_camera:
+         /*   case R.id.avchat_close_camera:
                 listener.closeCamera();
-                break;
+                break;*/
             case R.id.avchat_video_record:
                 listener.toggleRecord();
-                break;
-            case R.id.iv_send_redpackage:
-              /*  try {
-                RedPacketAction redPacketAction=new RedPacketAction();
-                redPacketAction.onClick();
-                }catch (Exception e){
-                    e.printStackTrace();
-                }*/
                 break;
             default:
                 break;
@@ -340,7 +332,7 @@ public class AVChatVideo implements View.OnClickListener, ToggleListener {
      */
     public void onAudioToVideo(boolean muteOn, boolean recordOn, boolean recordWarning) {
         muteToggle.toggle(muteOn ? ToggleState.ON : ToggleState.OFF);
-        closeCameraToggle.toggle(ToggleState.OFF);
+//        closeCameraToggle.toggle(ToggleState.OFF);
         if (manager.canSwitchCamera()) {
             switchCameraToggle.off(false);
         }
@@ -372,7 +364,7 @@ public class AVChatVideo implements View.OnClickListener, ToggleListener {
             switchCameraToggle.disable(false);
             muteToggle.disable(false);
             recordToggle.setEnabled(false);
-            closeCameraToggle.disable(false);
+//            closeCameraToggle.disable(false);
             receiveTV.setEnabled(false);
             refuseTV.setEnabled(false);
             hangUpImg.setEnabled(false);

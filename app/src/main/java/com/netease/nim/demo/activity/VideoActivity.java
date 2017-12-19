@@ -23,7 +23,6 @@ import com.netease.nim.demo.chatvideo.AVChatSurface;
 import com.netease.nim.demo.chatvideo.AVChatTimeoutObserver;
 import com.netease.nim.demo.chatvideo.CallStateEnum;
 import com.netease.nim.demo.chatvideo.PhoneCallStateObserver;
-import com.netease.nim.demo.utils.SharePreUtils;
 import com.netease.nim.uikit.UI;
 import com.netease.nim.uikit.common.util.log.LogUtil;
 import com.netease.nim.uikit.common.util.sys.NetworkUtil;
@@ -36,10 +35,8 @@ import com.netease.nimlib.sdk.auth.ClientType;
 import com.netease.nimlib.sdk.avchat.AVChatCallback;
 import com.netease.nimlib.sdk.avchat.AVChatManager;
 import com.netease.nimlib.sdk.avchat.AVChatStateObserver;
-import com.netease.nimlib.sdk.avchat.constant.AVChatAudioEffectMode;
 import com.netease.nimlib.sdk.avchat.constant.AVChatControlCommand;
 import com.netease.nimlib.sdk.avchat.constant.AVChatEventType;
-import com.netease.nimlib.sdk.avchat.constant.AVChatMediaCodecMode;
 import com.netease.nimlib.sdk.avchat.constant.AVChatType;
 import com.netease.nimlib.sdk.avchat.model.AVChatAudioFrame;
 import com.netease.nimlib.sdk.avchat.model.AVChatCalleeAckEvent;
@@ -47,9 +44,7 @@ import com.netease.nimlib.sdk.avchat.model.AVChatCameraCapturer;
 import com.netease.nimlib.sdk.avchat.model.AVChatCommonEvent;
 import com.netease.nimlib.sdk.avchat.model.AVChatControlEvent;
 import com.netease.nimlib.sdk.avchat.model.AVChatData;
-import com.netease.nimlib.sdk.avchat.model.AVChatImageFormat;
 import com.netease.nimlib.sdk.avchat.model.AVChatNetworkStats;
-import com.netease.nimlib.sdk.avchat.model.AVChatNotifyOption;
 import com.netease.nimlib.sdk.avchat.model.AVChatOnlineAckEvent;
 import com.netease.nimlib.sdk.avchat.model.AVChatParameters;
 import com.netease.nimlib.sdk.avchat.model.AVChatSessionStats;
@@ -143,21 +138,37 @@ public class VideoActivity extends UI
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*if (needFinish || !checkSource()) {
+      /*  if (needFinish || !checkSource()) {
             finish();
             return;
-        }
-*/
-        //得到去电账号
-        receiverId = getIntent().getStringExtra(EXTRA_ACCOUNT);
+        }*/
         // 锁屏唤醒
         dismissKeyguard();
         View root = LayoutInflater.from(this).inflate(R.layout.activity_video, null);
         setContentView(root);
-        avChatSurface = new AVChatSurface(this, findViewById(R.id.avchat_surface_layout), this);
-        this.avChatParameters = new AVChatParameters();
-        registerAVChatIncomingCallObserver(true);
-        initLinstener();
+        // face unity
+        initFaceU();
+        mIsInComingCall = getIntent().getBooleanExtra(KEY_IN_CALLING, false);
+        avChatUI = new AVChatUI(this, root, this);
+        if (!avChatUI.init(this)) {
+            this.finish();
+            return;
+        }
+
+        registerNetCallObserver(true);
+        if (mIsInComingCall) {
+            parseIncomingIntent();
+            inComingCalling();
+        } else {
+            parseOutgoingIntent();
+            outgoingCalling();
+        }
+
+        notifier = new AVChatNotification(this);
+        notifier.init(receiverId != null ? receiverId : avChatData.getAccount());
+        isCallEstablished = false;
+        //放到所有UI的基类里面注册，所有的UI实现onKickOut接口
+        NIMClient.getService(AuthServiceObserver.class).observeOnlineStatus(userStatusObserver, true);
     }
 
 
@@ -248,107 +259,6 @@ public class VideoActivity extends UI
         AVChatManager.getInstance().disableRtc();
 
     }
-
-
-    private void registerAVChatIncomingCallObserver(boolean register) {
-//        通话的基本 信息
-        AVChatManager.getInstance().observeIncomingCall(new Observer<AVChatData>() {
-            @Override
-            public void onEvent(final AVChatData data) {
-                avChatData1 = data;
-                Toast.makeText(VideoActivity.this , data.getAccount() +"来电",Toast.LENGTH_SHORT).show();
-                String extra = data.getExtra();
-//                拒绝请求
-//                AVChatManager.getInstance().hangUp2(data.getChatId(), null);
-
-//                这是接受 请求过来的     receiveInComingCall(data);
-
-//                 当前来电。 如果选择继续原来的通话，挂断当前来电，最好能够先发送一个正忙的指令给对方
-//                AVChatManager.getInstance().sendControlCommand(data.getChatId(), AVChatControlCommand.BUSY, null);
-
-                // 有网络来电打开AVChatActivity
-//                AVChatProfile.getInstance().setAVChatting(true);
-
-            }
-        }, register);
-    }
-
-
-
-
-
-
-
-  /*去电呼叫整体逻辑*/
-    private void outGoingCalling(String receiverId, final AVChatType callTypeEnum) {
-        AVChatNotifyOption notifyOption = new AVChatNotifyOption();
-        notifyOption.extendMessage = "extra_data";
-        notifyOption.webRTCCompat = false;
-        //        默认forceKeepCalling为true，开发者如果不需要离线持续呼叫功能可以将forceKeepCalling设为false
-//        notifyOption.forceKeepCalling = false;
-        AVChatManager.getInstance().enableRtc();
-        if (mVideoCapturer == null) {
-            mVideoCapturer = AVChatVideoCapturerFactory.createCameraCapturer();
-            AVChatManager.getInstance().setupVideoCapturer(mVideoCapturer);
-        }
-        mVideoCapturer.setFocus();
-        mVideoCapturer.setAutoFocus(true);
-        //        mVideoCapturer.setZoom(zoomValue);
-//        mVideoCapturer.switchCamera();  切换摄像头
-        int currentZoom = mVideoCapturer.getCurrentZoom();
-        mVideoCapturer.setFlash(false);
-
-        avChatParameters.setString(AVChatParameters.KEY_AUDIO_EFFECT_NOISE_SUPPRESSOR, AVChatAudioEffectMode.DISABLE);
-        avChatParameters.setString(AVChatParameters.KEY_AUDIO_EFFECT_ACOUSTIC_ECHO_CANCELER, AVChatAudioEffectMode.DISABLE);
-        avChatParameters.setString(AVChatParameters.KEY_VIDEO_ENCODER_MODE, AVChatMediaCodecMode.MEDIA_CODEC_AUTO);
-        avChatParameters.setString(AVChatParameters.KEY_VIDEO_DECODER_MODE, AVChatMediaCodecMode.MEDIA_CODEC_AUTO);
-        //采用I420图像格式
-        avChatParameters.setInteger(AVChatParameters.KEY_VIDEO_FRAME_FILTER_FORMAT, AVChatImageFormat.I420);
-//是     否开启视频绘制帧率汇报
-        avChatParameters.setBoolean(AVChatParameters.KEY_VIDEO_FPS_REPORTED, true);
-        AVChatManager.getInstance().setParameters(avChatParameters);
-        if (callTypeEnum == AVChatType.VIDEO) {
-            AVChatManager.getInstance().enableVideo();
-            AVChatManager.getInstance().startVideoPreview();
-        }
-
-        AVChatManager.getInstance().setParameter(AVChatParameters.KEY_VIDEO_FRAME_FILTER, true);
-        AVChatManager.getInstance().call2(receiverId, callTypeEnum, notifyOption, new AVChatCallback<AVChatData>() {
-            @Override
-            public void onSuccess(AVChatData data) {
-                avChatData = data;
-                List<String> deniedPermissions = BaseMPermission.getDeniedPermissions(VideoActivity.this, BASIC_PERMISSIONS);
-                if (deniedPermissions != null && !deniedPermissions.isEmpty()) {
-                    Toast.makeText(VideoActivity.this , "avChatVideo.CameraPermissi;",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                //如果需要使用视频预览功能，在此进行设置，调用setupLocalVideoRender
-                //如果不需要视频预览功能，那么删掉下面if语句代码即可
-                if (callTypeEnum == AVChatType.VIDEO) {
-                    Toast.makeText(VideoActivity.this, "我就是init", Toast.LENGTH_SHORT).show();
-                    avChatSurface.initSmallSurfaceView(SharePreUtils.getString("name" , ""));
-                }
-            }
-
-            @Override
-            public void onFailed(int code) {
-            }
-
-            @Override
-            public void onException(Throwable exception) {
-            }
-        });
-    }
-
-
-
-
-
-
-
-
-
     Observer<StatusCode> userStatusObserver = new Observer<StatusCode>() {
 
         @Override
@@ -608,6 +518,7 @@ public class VideoActivity extends UI
     }
 
     private void showOrHideFaceULayout(boolean show) {
+
         ViewGroup vp = findView(R.id.avchat_video_face_unity);
         for (int i = 0; i < vp.getChildCount(); i++) {
             vp.getChildAt(i).setVisibility(show ? View.VISIBLE : View.GONE);
@@ -660,7 +571,8 @@ public class VideoActivity extends UI
      */
     private void parseOutgoingIntent() {
         receiverId = getIntent().getStringExtra(EXTRA_ACCOUNT);
-        state = getIntent().getIntExtra(KEY_CALL_TYPE, -1);
+//        state = getIntent().getIntExtra(KEY_CALL_TYPE, -1);
+        state=2;
     }
 
 

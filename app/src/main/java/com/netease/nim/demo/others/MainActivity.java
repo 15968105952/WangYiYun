@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements AVChatSurface.Tou
         receiverId = getIntent().getStringExtra(EXTRA_ACCOUNT);
         //得到来电数据
         avChatData1= (AVChatData) getIntent().getSerializableExtra(KEY_CALL_CONFIG);
-        avChatSurface = new AVChatSurface(this, findViewById(R.id.surface_layout), this);
+//        avChatSurface = new AVChatSurface(this, findViewById(R.id.surface_layout), this);
         this.avChatParameters = new AVChatParameters();
         registerAVChatIncomingCallObserver(true);
         initLinstener();

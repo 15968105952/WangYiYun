@@ -2,7 +2,7 @@ package com.netease.nim.demo.manager;
 
 import android.content.Context;
 
-import com.netease.nim.demo.others.MainActivity;
+import com.netease.nim.demo.activity.VideoActivity;
 import com.netease.nim.uikit.api.NimUIKit;
 import com.netease.nim.uikit.api.model.contact.ContactEventListener;
 
@@ -22,7 +22,7 @@ public class ContactHelper {
             @Override
             public void onItemClick(Context context, String account) {
                 //跳转到视频通话界面
-                MainActivity.start(context, account);
+                VideoActivity.start(context, account);
 //                UserProfileActivity.start(context, account);
             }
 
@@ -33,7 +33,7 @@ public class ContactHelper {
 
             @Override
             public void onAvatarClick(Context context, String account) {
-                MainActivity.start(context, account);
+                VideoActivity.start(context, account);
 //                UserProfileActivity.start(context, account);
             }
         });

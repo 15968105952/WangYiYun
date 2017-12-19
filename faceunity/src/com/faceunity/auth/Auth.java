@@ -11,11 +11,14 @@ import com.faceunity.utils.ReflectUtils;
 public class Auth {
 
     private static final String AUTH_CLASS_PATH = "com.faceunity.auth.AuthPack";
+
     private static final String AUTH_METHOD_NAME = "A";
 
     public static boolean hasAuthFile() {
         try {
             return ReflectUtils.hasMethod(AUTH_CLASS_PATH, AUTH_METHOD_NAME, null);
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
