@@ -10,7 +10,7 @@ import com.faceunity.utils.ReflectUtils;
 
 public class Auth {
 
-    private static final String AUTH_CLASS_PATH = "com.faceunity.auth.AuthPack";
+    private static final String AUTH_CLASS_PATH = "com.faceunity.auth.authpack";
 
     private static final String AUTH_METHOD_NAME = "A";
 

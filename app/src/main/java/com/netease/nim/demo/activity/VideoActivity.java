@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -558,6 +559,11 @@ public class VideoActivity extends UI
         }
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        return false;
+    }
+
     /**
      * 来电参数解析
      */
@@ -586,7 +592,11 @@ public class VideoActivity extends UI
 
     @Override
     public void onTouch() {
+        if (faceU == null) {
+            return;
+        }
 
+        faceU.showOrHideLayout();
     }
 
     @Override

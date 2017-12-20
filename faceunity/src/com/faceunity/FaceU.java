@@ -151,8 +151,8 @@ public class FaceU {
             byte[] v3data = new byte[is.available()];
             is.read(v3data);
             is.close();
-            faceunity.fuSetup(v3data, null, Auth.getFaceUnityAuthToken());
-            faceunity.fuSetMaxFaces(4);
+            faceunity.fuSetup(v3data, null,Auth.getFaceUnityAuthToken());
+            faceunity.fuSetMaxFaces(1);
             Log.i(TAG, "fuSetup");
 
             is = context.getAssets().open("face_beautification.mp3");
