@@ -55,8 +55,9 @@
     </style>
 
     <!-- 欢迎界面主题 -->
-    <style name="WelcomeEntranceActionBarTheme" parent="AppTheme.NoActionBar">
+    <style name="WelcomeEntranceActionBarTheme" parent="AppTheme">
         <item name="android:windowFullscreen">true</item>
+        <item name="windowNoTitle">true</item>
         <item name="android:windowBackground">@drawable/splash_bg</item>
     </style>
 

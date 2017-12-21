@@ -46,18 +46,21 @@
             android:background="@drawable/circle_shape_white"
             android:contentDescription="@string/empty"
             android:padding="10dp"
+            android:layout_marginRight="30dp"
             android:scaleType="centerInside"
             android:src="@drawable/avchat_mute_bg" />
 
-        <ImageView
+        <TextView
+            android:textColor="@color/white"
             android:id="@+id/avchat_video_record"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:contentDescription="@string/empty"
-            android:padding="10dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/avchat_video_record_selector" />
+            android:background="@drawable/circle_shape_white"
+            android:text="发约"
+            android:layout_marginRight="30dp"
+            android:gravity="center"
+            />
 
         <ImageView
             android:id="@+id/avchat_switch_camera"

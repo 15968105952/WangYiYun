@@ -44,7 +44,7 @@ public abstract class BaseMessageActivity extends UI {
         initToolBar();
         parseIntent();
 
-//        messageFragment = (MessageFragment) switchContent(fragment());
+        messageFragment = (MessageFragment) switchContent(fragment());
     }
 
     @Override

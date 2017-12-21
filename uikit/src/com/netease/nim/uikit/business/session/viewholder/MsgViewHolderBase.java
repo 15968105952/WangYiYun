@@ -47,6 +47,7 @@ public abstract class MsgViewHolderBase extends RecyclerViewHolder<BaseMultiItem
     // data
     protected IMMessage message;
 
+
     // view
     protected View alertButton;
     protected TextView timeTextView;

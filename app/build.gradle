@@ -20,6 +20,16 @@ android {
             }
         }
     }
+    signingConfigs {
+        debug { storeFile file("debug.keystore") }
+
+        release {
+            storeFile file('release.keystore')
+            storePassword 'thisiskeystorepassword'
+            keyAlias 'nim_demo'
+            keyPassword 'thisiskeypassword'
+        }
+    }
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
@@ -28,9 +38,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [AMAP_KEY: "ee20324fba1c7f4ad7a4a207e7f08e8d"]
         }
     }
-   /* *//*放置so的位置需要和配置文件指向的位置一致*//*
+    /* *//*放置so的位置需要和配置文件指向的位置一致*//*
     sourceSets {
         main {
             jni.srcDirs = []

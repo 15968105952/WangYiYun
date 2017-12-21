@@ -162,7 +162,7 @@ public class MainActivity extends UI {
             }*/
         }
     }
-
+   /*动态加载联系人界面*/
     private void addContactFragment() {
         fragment = new ContactsFragment();
         fragment.setContainerId(R.id.contact_fragment);

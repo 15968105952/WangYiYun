@@ -8,11 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.netease.nim.demo.NimApplication;
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.activity.AVChatUI;
+import com.netease.nim.demo.activity.RedPackageActivity;
 import com.netease.nim.demo.listener.AVChatUIListener;
 import com.netease.nim.demo.listener.ToggleListener;
-
 import com.netease.nim.uikit.business.uinfo.UserInfoHelper;
 import com.netease.nim.uikit.common.ui.imageview.HeadImageView;
 import com.netease.nimlib.sdk.avchat.model.AVChatCameraCapturer;
@@ -47,7 +48,7 @@ public class AVChatVideo implements View.OnClickListener, ToggleListener {
     ToggleView switchCameraToggle;
 //    ToggleView closeCameraToggle;
     ToggleView muteToggle;
-    ImageView recordToggle;
+    TextView recordToggle;
     ImageView hangUpImg;
     //face unity
     private View faceUnityRoot;
@@ -108,7 +109,7 @@ public class AVChatVideo implements View.OnClickListener, ToggleListener {
 //        closeCameraToggle = new ToggleView(bottomRoot.findViewById(R.id.avchat_close_camera), ToggleState.DISABLE, this);
         time = (Chronometer) bottomRoot.findViewById(R.id.avchat_video_time);
         muteToggle = new ToggleView(bottomRoot.findViewById(R.id.avchat_video_mute), ToggleState.DISABLE, this);
-        recordToggle = (ImageView) bottomRoot.findViewById(R.id.avchat_video_record);
+        recordToggle = (TextView) bottomRoot.findViewById(R.id.avchat_video_record);
         recordToggle.setEnabled(false);
         recordToggle.setOnClickListener(this);
         hangUpImg = (ImageView) bottomRoot.findViewById(R.id.avchat_video_logout);
@@ -294,7 +295,9 @@ public class AVChatVideo implements View.OnClickListener, ToggleListener {
                 listener.closeCamera();
                 break;*/
             case R.id.avchat_video_record:
-                listener.toggleRecord();
+                /*跳转到红包界面*/
+                RedPackageActivity.start(NimApplication.context);
+//                listener.toggleRecord();
                 break;
             default:
                 break;

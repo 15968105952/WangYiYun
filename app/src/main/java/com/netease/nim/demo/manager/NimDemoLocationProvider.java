@@ -1,8 +1,15 @@
 package com.netease.nim.demo.manager;
 
 import android.content.Context;
+import android.content.Intent;
+import android.view.View;
 
+import com.netease.nim.demo.activity.LocationAmapActivity;
+import com.netease.nim.demo.activity.NavigationAmapActivity;
+import com.netease.nim.demo.helper.LocationExtras;
 import com.netease.nim.uikit.api.model.location.LocationProvider;
+import com.netease.nim.uikit.common.ui.dialog.EasyAlertDialog;
+import com.netease.nim.uikit.common.util.log.LogUtil;
 
 /**
  * Created by zhoujianghua on 2015/8/11.
@@ -10,7 +17,7 @@ import com.netease.nim.uikit.api.model.location.LocationProvider;
 public class NimDemoLocationProvider implements LocationProvider {
     @Override
     public void requestLocation(final Context context, Callback callback) {
-        /*if (!NimLocationManager.isLocationEnable(context)) {
+        if (!NimLocationManager.isLocationEnable(context)) {
             final EasyAlertDialog alertDialog = new EasyAlertDialog(context);
             alertDialog.setMessage("位置服务未开启");
             alertDialog.addNegativeButton("取消", EasyAlertDialog.NO_TEXT_COLOR, EasyAlertDialog.NO_TEXT_SIZE,
@@ -38,17 +45,17 @@ public class NimDemoLocationProvider implements LocationProvider {
                     });
             alertDialog.show();
             return;
-        }*/
+        }
 
-//        LocationAmapActivity.start(context, callback);
+        LocationAmapActivity.start(context, callback);
     }
 
     @Override
     public void openMap(Context context, double longitude, double latitude, String address) {
-       /* Intent intent = new Intent(context, NavigationAmapActivity.class);
+        Intent intent = new Intent(context, NavigationAmapActivity.class);
         intent.putExtra(LocationExtras.LONGITUDE, longitude);
         intent.putExtra(LocationExtras.LATITUDE, latitude);
         intent.putExtra(LocationExtras.ADDRESS, address);
-        context.startActivity(intent);*/
+        context.startActivity(intent);
     }
 }

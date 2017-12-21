@@ -7,6 +7,25 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
+import com.netease.nim.demo.DemoCache;
+import com.netease.nim.demo.R;
+import com.netease.nim.demo.holders.MsgViewHolderAVChat;
+import com.netease.nim.demo.holders.MsgViewHolderDefCustom;
+import com.netease.nim.demo.holders.MsgViewHolderFile;
+import com.netease.nim.demo.holders.MsgViewHolderGuess;
+import com.netease.nim.demo.holders.MsgViewHolderRTS;
+import com.netease.nim.demo.holders.MsgViewHolderSnapChat;
+import com.netease.nim.demo.holders.MsgViewHolderSticker;
+import com.netease.nim.demo.holders.MsgViewHolderTip;
+import com.netease.nim.demo.redpacket.CustomAttachParser;
+import com.netease.nim.demo.redpacket.CustomAttachment;
+import com.netease.nim.demo.redpacket.GuessAttachment;
+import com.netease.nim.demo.redpacket.NIMRedPacketClient;
+import com.netease.nim.demo.redpacket.RTSAttachment;
+import com.netease.nim.demo.redpacket.RedPacketAttachment;
+import com.netease.nim.demo.redpacket.RedPacketOpenedAttachment;
+import com.netease.nim.demo.redpacket.SnapChatAttachment;
+import com.netease.nim.demo.redpacket.StickerAttachment;
 import com.netease.nim.uikit.api.NimUIKit;
 import com.netease.nim.uikit.api.model.recent.RecentCustomization;
 import com.netease.nim.uikit.api.model.session.SessionCustomization;
@@ -31,6 +50,7 @@ import com.netease.nimlib.sdk.avchat.constant.AVChatType;
 import com.netease.nimlib.sdk.avchat.model.AVChatAttachment;
 import com.netease.nimlib.sdk.msg.MsgService;
 import com.netease.nimlib.sdk.msg.MsgServiceObserve;
+import com.netease.nimlib.sdk.msg.attachment.FileAttachment;
 import com.netease.nimlib.sdk.msg.attachment.MsgAttachment;
 import com.netease.nimlib.sdk.msg.constant.AttachStatusEnum;
 import com.netease.nimlib.sdk.msg.constant.MsgDirectionEnum;
@@ -43,16 +63,6 @@ import com.netease.nimlib.sdk.team.model.Team;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.netease.nim.demo.DemoCache;
-import com.netease.nim.demo.R;
-import com.netease.nim.demo.redpacket.CustomAttachParser;
-import com.netease.nim.demo.redpacket.NIMRedPacketClient;
-import com.netease.nim.demo.redpacket.RTSAttachment;
-import com.netease.nim.demo.redpacket.RedPacketAttachment;
-import com.netease.nim.demo.redpacket.RedPacketOpenedAttachment;
-import com.netease.nim.demo.redpacket.SnapChatAttachment;
-import com.netease.nim.demo.redpacket.StickerAttachment;
 
 /**
  * UIKit自定义消息界面用法展示类
@@ -155,8 +165,8 @@ public class SessionHelper {
            /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
                 actions.add(new AVChatAction(AVChatType.AUDIO));
                 actions.add(new AVChatAction(AVChatType.VIDEO));
-            }
-            actions.add(new RTSAction());
+            }*/
+           /* actions.add(new RTSAction());
             actions.add(new SnapChatAction());
             actions.add(new GuessAction());
             actions.add(new FileAction());
@@ -422,14 +432,14 @@ public class SessionHelper {
     }
 
     private static void registerViewHolders() {
-       /* NimUIKit.registerMsgItemViewHolder(FileAttachment.class, MsgViewHolderFile.class);
+        NimUIKit.registerMsgItemViewHolder(FileAttachment.class, MsgViewHolderFile.class);
         NimUIKit.registerMsgItemViewHolder(AVChatAttachment.class, MsgViewHolderAVChat.class);
         NimUIKit.registerMsgItemViewHolder(GuessAttachment.class, MsgViewHolderGuess.class);
         NimUIKit.registerMsgItemViewHolder(CustomAttachment.class, MsgViewHolderDefCustom.class);
         NimUIKit.registerMsgItemViewHolder(StickerAttachment.class, MsgViewHolderSticker.class);
         NimUIKit.registerMsgItemViewHolder(SnapChatAttachment.class, MsgViewHolderSnapChat.class);
         NimUIKit.registerMsgItemViewHolder(RTSAttachment.class, MsgViewHolderRTS.class);
-        NimUIKit.registerTipMsgViewHolder(MsgViewHolderTip.class);*/
+        NimUIKit.registerTipMsgViewHolder(MsgViewHolderTip.class);
         registerRedPacketViewHolder();
     }
 
