@@ -98,8 +98,8 @@
         <!-- 地图界面 -->
         <activity android:name=".activity.LocationAmapActivity" />
         <activity android:name=".activity.NavigationAmapActivity" />
-        <!--拍摄视频-->
-        <activity android:name=".activity.VideoShootActivity"></activity>
+        <!-- 拍摄视频 -->
+        <activity android:name=".activity.VideoShootActivity" />
         <!-- 主界面 -->
         <activity
             android:name=".MainActivity"
@@ -245,7 +245,8 @@
         <activity android:name=".activity.VideoActivity" />
         <activity android:name=".activity.RedPackageActivity" />
         <activity android:name=".activity.ChangeActivity" />
-        <activity android:name=".activity.PhotoTakeActivity"></activity>
+        <activity android:name=".activity.PhotoTakeActivity" />
+        <activity android:name=".activity.ContactsActivity"></activity>
     </application>
 
 </manifest>

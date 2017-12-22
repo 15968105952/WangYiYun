@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.netease.nim.demo.activity.AVChatProfile;
+import com.netease.nim.demo.manager.OnlineStateEventManager;
 import com.netease.nim.demo.prefrence.UserPreferences;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.NimStrings;
@@ -55,8 +56,8 @@ public class NIMInitManager {
         // 注册全局云信sdk 观察者
         registerGlobalObservers(register);
 
-        // 初始化在线状态事件
-//        OnlineStateEventManager.init();
+        // 初始化在线状态事件,强制下线提示
+        OnlineStateEventManager.init();
     }
 
     private void registerGlobalObservers(boolean register) {

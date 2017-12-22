@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,9 +15,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gyf.barlibrary.ImmersionBar;
+import com.netease.nim.demo.activity.AVChatProfile;
 import com.netease.nim.demo.activity.SettingsActivity;
+import com.netease.nim.demo.activity.VideoActivity;
 import com.netease.nim.demo.login.LoginActivity;
 import com.netease.nim.demo.login.LogoutHelper;
+import com.netease.nim.demo.manager.SessionHelper;
+import com.netease.nim.demo.modle.Extras;
 import com.netease.nim.demo.prefrence.Preferences;
 import com.netease.nim.uikit.UI;
 import com.netease.nim.uikit.api.model.contact.ContactsCustomization;
@@ -28,8 +33,12 @@ import com.netease.nim.uikit.business.contact.core.viewholder.AbsContactViewHold
 import com.netease.nim.uikit.business.contact.selector.activity.ContactSelectActivity;
 import com.netease.nim.uikit.business.team.helper.TeamHelper;
 import com.netease.nim.uikit.common.util.log.LogUtil;
+import com.netease.nimlib.sdk.NIMClient;
+import com.netease.nimlib.sdk.NimIntent;
 import com.netease.nimlib.sdk.Observer;
 import com.netease.nimlib.sdk.StatusCode;
+import com.netease.nimlib.sdk.auth.AuthServiceObserver;
+import com.netease.nimlib.sdk.msg.model.IMMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -261,7 +270,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
     /********聊天部分监听*********/
     private void registerObservers(boolean register) {
-//        NIMClient.getService(AuthServiceObserver.class).observeOnlineStatus(userStatusObserver, register);
+        NIMClient.getService(AuthServiceObserver.class).observeOnlineStatus(userStatusObserver, register);
 //        MyUserInfoCache.getInstance().registerFriendDataChangedObserver(friendDataChangedObserver,register);
     }
 
@@ -274,9 +283,33 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
     private void onParseIntent() {
         Intent intent = getIntent();
-        if (intent.hasExtra(EXTRA_APP_QUIT)) {
+        if (intent.hasExtra(NimIntent.EXTRA_NOTIFY_CONTENT)) {
+            IMMessage message = (IMMessage) getIntent().getSerializableExtra(NimIntent.EXTRA_NOTIFY_CONTENT);
+            switch (message.getSessionType()) {
+                case P2P:
+                    SessionHelper.startP2PSession(this, message.getSessionId());
+                    break;
+                case Team:
+                    SessionHelper.startTeamSession(this, message.getSessionId());
+                    break;
+                default:
+                    break;
+            }
+        } else if (intent.hasExtra(EXTRA_APP_QUIT)) {
             onLogout();
             return;
+        } else if (intent.hasExtra(VideoActivity.INTENT_ACTION_AVCHAT)) {
+            if (AVChatProfile.getInstance().isAVChatting()) {
+                Intent localIntent = new Intent();
+                localIntent.setClass(this, VideoActivity.class);
+                startActivity(localIntent);
+            }
+        } else if (intent.hasExtra(Extras.EXTRA_JUMP_P2P)) {
+            Intent data = intent.getParcelableExtra(Extras.EXTRA_DATA);
+            String account = data.getStringExtra(Extras.EXTRA_ACCOUNT);
+            if (!TextUtils.isEmpty(account)) {
+                SessionHelper.startP2PSession(this, account);
+            }
         }
     }
 

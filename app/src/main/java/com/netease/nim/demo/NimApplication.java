@@ -12,6 +12,7 @@ import com.netease.nim.demo.manager.NimDemoLocationProvider;
 import com.netease.nim.demo.manager.SessionHelper;
 import com.netease.nim.demo.mxplush.DemoMixPushMessageHandler;
 import com.netease.nim.demo.prefrence.Preferences;
+import com.netease.nim.demo.prefrence.UserPreferences;
 import com.netease.nim.demo.redpacket.NIMRedPacketClient;
 import com.netease.nim.uikit.api.NimUIKit;
 import com.netease.nim.uikit.api.UIKitOptions;
@@ -55,7 +56,7 @@ public class NimApplication extends Application {
             // 初始化UIKit模块
             initUIKit();
             // 初始化消息提醒
-//            NIMClient.toggleNotification(UserPreferences.getNotificationToggle());
+            NIMClient.toggleNotification(UserPreferences.getNotificationToggle());
             // 云信sdk相关业务初始化
             NIMInitManager.getInstance().init(true);
         }

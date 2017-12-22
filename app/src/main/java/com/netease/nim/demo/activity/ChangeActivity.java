@@ -41,6 +41,7 @@ public class ChangeActivity extends AppCompatActivity {
                 VideoActivity.start(this, stringExtra);
                 break;
             case R.id.bt_chat:
+                /*跳转到通讯录列表界面*/
                 SessionHelper.startP2PSession(this, stringExtra);
                 break;
         }
