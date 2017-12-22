@@ -95,9 +95,11 @@
                 <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--地图界面-->
-        <activity android:name=".activity.LocationAmapActivity"></activity>
-        <activity android:name=".activity.NavigationAmapActivity"></activity>
+        <!-- 地图界面 -->
+        <activity android:name=".activity.LocationAmapActivity" />
+        <activity android:name=".activity.NavigationAmapActivity" />
+        <!--拍摄视频-->
+        <activity android:name=".activity.VideoShootActivity"></activity>
         <!-- 主界面 -->
         <activity
             android:name=".MainActivity"
@@ -242,7 +244,8 @@
 
         <activity android:name=".activity.VideoActivity" />
         <activity android:name=".activity.RedPackageActivity" />
-        <activity android:name=".activity.ChangeActivity"></activity>
+        <activity android:name=".activity.ChangeActivity" />
+        <activity android:name=".activity.PhotoTakeActivity"></activity>
     </application>
 
 </manifest>

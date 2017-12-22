@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/video_play_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/video_time"
+    android:layout_toRightOf="@id/video_thumb"
+    android:visibility="gone"
+    tools:showIn="@layout/video_item_layout">
+
+    <TextView
+        android:id="@+id/video_path"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:textColor="@color/color_black_ff999999"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/delete_btn"
+        android:layout_width="50dp"
+        android:layout_height="24dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/video_path"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/blue_btn_normal"
+        android:gravity="center"
+        android:text="@string/delete"
+        android:textColor="@color/color_blue_FF2084FF" />
+
+    <TextView
+        android:id="@+id/copy_btn"
+        android:layout_width="50dp"
+        android:layout_height="24dp"
+        android:layout_below="@id/video_path"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_toLeftOf="@id/delete_btn"
+        android:background="@drawable/blue_btn_normal"
+        android:gravity="center"
+        android:text="@string/copy"
+        android:textColor="@color/color_blue_FF2084FF" />
+
+    <TextView
+        android:id="@+id/play_btn"
+        android:layout_width="50dp"
+        android:layout_height="24dp"
+        android:layout_below="@id/video_path"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_toLeftOf="@id/copy_btn"
+        android:background="@drawable/blue_btn_normal"
+        android:gravity="center"
+        android:text="@string/play"
+        android:textColor="@color/color_blue_FF2084FF"
+        android:textSize="14sp" />
+</RelativeLayout>

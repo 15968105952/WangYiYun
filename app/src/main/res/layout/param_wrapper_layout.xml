@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/param_wrapper_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="gone"
+    tools:showIn="@layout/video_shoot_activity">
+
+    <RelativeLayout
+        android:id="@+id/param_selection_layout"
+        android:layout_width="match_parent"
+        android:layout_height="223dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="168dp"
+        android:background="@color/color_black_CC000000">
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:text="@string/video_settings"
+            android:textColor="@color/color_gray_F7736C6B"
+            android:textSize="14sp" />
+
+        <!-- 清晰度 -->
+        <include layout="@layout/clarity_layout" />
+        <!-- 分段数 -->
+        <include layout="@layout/video_count_layout" />
+        <!-- 总时长 -->
+        <include layout="@layout/total_duration_layout" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingTop="15dp">
+
+    <ImageView
+        android:id="@+id/video_thumb"
+        android:layout_width="90dp"
+        android:layout_height="68dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:scaleType="center" />
+
+    <TextView
+        android:id="@+id/video_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="11dp"
+        android:layout_marginLeft="12dp"
+        android:layout_toRightOf="@id/video_thumb"
+        android:textColor="@color/color_gray_FF4A4A4A"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/video_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/video_name"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_toRightOf="@id/video_thumb"
+        android:textColor="@color/color_black_ff999999"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/video_detail_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/arrow_right"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/progress_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/video_name"
+        android:layout_marginLeft="12dp"
+        android:layout_toRightOf="@id/video_thumb"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/video_upload_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="等待上传……"
+            android:textColor="@color/color_gray_FF999999"
+            android:textSize="12sp" />
+
+        <ProgressBar
+            android:id="@+id/video_progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="245dp"
+            android:layout_height="4dp"
+            android:layout_below="@id/video_upload_progress"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="7dp"
+            android:progressDrawable="@drawable/progressbar_color" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/upload_failed_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/video_name"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/video_thumb"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/upload_failed_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/upload_failed"
+            android:textColor="@color/color_yellow_FF8C21"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/retry_btn"
+            android:layout_width="50dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/blue_btn_normal"
+            android:gravity="center"
+            android:text="@string/retry"
+            android:textColor="@color/color_blue_FF2084FF" />
+    </RelativeLayout>
+
+    <!-- 删除，播放，复制等操作 -->
+    <include layout="@layout/video_play_layout" />
+</RelativeLayout>

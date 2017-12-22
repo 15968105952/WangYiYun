@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000">
+
+        <com.netease.vcloud.video.render.NeteaseView
+            android:id="@+id/camerasurfaceview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <!-- 顶部控制栏 -->
+    <RelativeLayout
+        android:id="@+id/control_layout"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/transparent">
+
+        <RelativeLayout
+            android:id="@+id/close_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/close_btn_selector" />
+        </RelativeLayout>
+
+        <ImageButton
+            android:id="@+id/switch_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/camera_switch_btn_selector" />
+
+        <ImageButton
+            android:id="@+id/filter_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="40dp"
+            android:layout_toLeftOf="@id/switch_btn"
+            android:visibility="gone"
+            android:background="@drawable/filter_btn_selector" />
+
+        <ImageButton
+            android:id="@+id/faceu_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="40dp"
+            android:layout_toLeftOf="@id/switch_btn"
+            android:background="@drawable/ic_faceu" />
+    </RelativeLayout>
+
+
+    <!-- faceu 布局 -->
+    <include
+        android:id="@+id/faceu_layout"
+        layout="@layout/faceu_layout_video"
+        android:layout_below="@id/control_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <!-- 进度条 -->
+    <ImageView
+        android:id="@+id/take_counts_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="109dp"
+        android:background="@drawable/ic_three_take" />
+
+    <RelativeLayout
+        android:id="@+id/start_layout"
+        android:layout_width="match_parent"
+        android:layout_height="114dp"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/start_recoding_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/take_video"
+            android:gravity="center"
+            android:text="@string/start_recoding"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/import_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="40dp"
+            android:layout_toLeftOf="@id/start_recoding_btn"
+            android:background="@drawable/white_btn_selector"
+            android:gravity="center"
+            android:text="导入视频"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/previous_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="60dp"
+            android:layout_toLeftOf="@id/start_recoding_btn"
+            android:background="@drawable/white_btn_selector"
+            android:gravity="center"
+            android:text="@string/previous_step"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+
+        <ImageView
+            android:id="@+id/import_add_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/start_recoding_btn"
+            android:background="@drawable/ic_add"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/finish_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40dp"
+            android:layout_toRightOf="@id/start_recoding_btn"
+            android:background="@drawable/white_btn_selector"
+            android:gravity="center"
+            android:text="@string/done"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/recording_layout"
+        android:layout_width="match_parent"
+        android:layout_height="114dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
+
+        <com.netease.nim.demo.video.view.CircleProgressView
+            android:id="@+id/progress_view"
+            android:layout_width="74dp"
+            android:layout_height="74dp"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
+
+    <!-- 滤镜选择layout -->
+    <include layout="@layout/shortvideo_filter_layout" />
+
+    <!-- 选中参数显示layout -->
+    <include layout="@layout/param_layout" />
+
+    <!-- 参数选择layout -->
+    <include layout="@layout/param_wrapper_layout" />
+
+</RelativeLayout>

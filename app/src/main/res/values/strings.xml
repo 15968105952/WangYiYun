@@ -342,6 +342,7 @@
     <string name="nrtc_setting_voe_high_quality">高清语音</string>
     <string name="nrtc_setting_voe_dtx_key">nrtc_setting_voe_dtx_key</string>
     <string name="nrtc_setting_voe_dtx">人声检测</string>
+    <string name="play">播放</string>
 
 
 </resources>

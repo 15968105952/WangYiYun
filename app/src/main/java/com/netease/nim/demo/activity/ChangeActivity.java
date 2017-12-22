@@ -22,6 +22,8 @@ public class ChangeActivity extends AppCompatActivity {
     Button btRadioAndVideo;
     @InjectView(R.id.bt_chat)
     Button btChat;
+    @InjectView(R.id.bt_pictured)
+    Button btPictured;
     private String stringExtra;
 
     @Override
@@ -36,18 +38,24 @@ public class ChangeActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bt_radio_and_video:
-             VideoActivity.start(this,stringExtra);
+                VideoActivity.start(this, stringExtra);
                 break;
             case R.id.bt_chat:
                 SessionHelper.startP2PSession(this, stringExtra);
                 break;
         }
     }
+
     public static void start(Context context, String account) {
         Intent intent = new Intent();
         intent.setClass(context, ChangeActivity.class);
         intent.putExtra(EXTRA_ACCOUNT, account);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         context.startActivity(intent);
+    }
+
+    @OnClick(R.id.bt_pictured)
+    public void onClick() {
+        startActivity(new Intent(ChangeActivity.this,PhotoTakeActivity.class));
     }
 }

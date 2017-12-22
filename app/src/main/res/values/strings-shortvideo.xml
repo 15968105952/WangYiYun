@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 短视频 -->
+
+    <!-- 主界面 -->
+    <string name="short_video_demo">短视频Demo</string>
+    <string name="video_reach_limit">视频数量已达到上限</string>
+    <string name="video_reach_limit_content">若继续拍摄视频将保存在本地，无法上传！</string>
+    <string name="continue_shooting">继续拍摄</string>
+    <string name="go_delete_video">去删除视频</string>
+    <string name="wifi_confirm">正在使用手机流量上传，是否继续？</string>
+    <string name="copy">复制</string>
+    <string name="delete">删除</string>
+    <string name="delete_confirm_tip">确定删除该视频，删除后不可恢复</string>
+    <string name="upload_failed">上传失败</string>
+    <string name="retry">重试</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <!-- 录制界面 -->
+    <string name="start_recoding">开始\n录制</string>
+    <string name="continue_recoding">继续\n录制</string>
+    <string name="video_name">视频名称</string>
+    <string name="hd">高清</string>
+    <string name="sd">标清</string>
+    <string name="fluent">流畅</string>
+    <string name="video_settings">视频设置</string>
+    <string name="clarity">清晰度</string>
+    <string name="video_count">分段数</string>
+    <string name="one_count">1段</string>
+    <string name="two_count">2段</string>
+    <string name="three_count">3段</string>
+    <string name="total_duration">总时长</string>
+    <string name="first_time">6s</string>
+    <string name="second_time">10s</string>
+    <string name="third_time">30s</string>
+    <string name="param_count">%d段</string>
+    <string name="param_time">%d秒</string>
+    <string name="no_filter">无滤镜</string>
+    <string name="filter_a">滤镜A</string>
+    <string name="filter_b">滤镜B</string>
+    <string name="filter_c">滤镜C</string>
+    <string name="filter_d">滤镜D</string>
+    <string name="previous_step">上一步</string>
+    <string name="next_step">下一步</string>
+    <string name="take_video_done">拍摄已完成!</string>
+    <string name="delete_pre_video">删除上分段</string>
+    <string name="finish_tip">确定放弃这段视频吗？</string>
+    <string name="saving">正在保存视频，为防止视频丢失请\n不要关闭本页面</string>
+    <!-- 编辑界面 -->
+    <string name="adjust">调整</string>
+    <string name="subsection">分段</string>
+    <string name="textures">贴图</string>
+    <string name="words">文字</string>
+    <string name="accompany_sound">伴音</string>
+    <string name="brightness">亮度</string>
+    <string name="contrast_ratio">对比度</string>
+    <string name="saturation">饱和度</string>
+    <string name="color_temperature">色温</string>
+    <string name="sharpness">锐度</string>
+    <string name="text_hint">点击输入文字...</string>
+
+</resources>

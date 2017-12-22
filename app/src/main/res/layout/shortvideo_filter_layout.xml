@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/shortvideo_filter_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    android:visibility="gone"
+    tools:showIn="@layout/video_shoot_activity">
+
+    <RadioGroup
+        android:id="@+id/filter_group"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:layout_marginTop="44dp"
+        android:background="@color/color_black_FF000000"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/no_filter_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="26dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="@string/no_filter"
+            android:textColor="@drawable/radio_text_color"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:id="@+id/filter_a_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:text="@string/filter_a"
+            android:textColor="@drawable/radio_text_color"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:id="@+id/filter_b_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="@string/filter_b"
+            android:textColor="@drawable/radio_text_color"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:id="@+id/filter_c_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="@string/filter_c"
+            android:textColor="@drawable/radio_text_color"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:id="@+id/filter_d_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="@string/filter_d"
+            android:textColor="@drawable/radio_text_color"
+            android:textSize="14sp" />
+    </RadioGroup>
+</RelativeLayout>
